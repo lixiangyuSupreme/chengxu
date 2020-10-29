@@ -7,7 +7,7 @@ const app = new titbit({
 
 app.get('/',async c => {
     c.res.body = 'lixiangyu'+' '+ 'success'
-},{name : '首页', group: 'home'})
+})
 
 app.get('/info',async c => {
     c.res.body ='{"name":"lixiangyu","sno":"2018011802"}'

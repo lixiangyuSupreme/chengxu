@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="width:86%;margin:auto;margin-top: 2rem;padding:1rem;">
+    <form onsubmit="return false;">
+      <input type="file" onchange="uploadFile(this);">
+    </form>
+    <div id="returnText" style="padding:1rem;margin:1rem;"></div>
+  </div>
+
+  <script>
+    function uploadFile (t) {
+      let f = t.files[0];
+
+      let fm = new FormData();
+      fm.append('file', f);
+
+      fetch('http://localhost:8000/post', {
+        method : 'POST',
+        mode : 'cors',
+        body : fm
+      }).then(res => {
+        return res.text();
+      }).then(d => {
+        document.getElementById('returnText').innerHTML = d;
+      });
+
+    }
+  </script>
+</body>
+</html>
